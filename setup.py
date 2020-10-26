@@ -7,7 +7,7 @@ install_requires = [
 
 setup(
     name='rocketchat',
-    version='1.0.0',
+    version='1.0.1',
     packages=['rocketchat'],
     install_requires=install_requires,
     author='Danilo Vargas',

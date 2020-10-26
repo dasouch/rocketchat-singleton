@@ -1,6 +1,8 @@
+import os
+
 from rocketchat_API.rocketchat import RocketChat
 
-from rocketchat.settings import ROCKET_CHAT_URL, ROCKET_CHAT_PASSWORD, ROCKET_CHAT_USERNAME
+from rocketchat.settings import ROCKET_CHAT_URL
 
 
 class RocketChatBot:
@@ -9,7 +11,8 @@ class RocketChatBot:
 
     def __new__(cls, *args, **kwargs):
         if cls._instance is None:
-            cls.rocket = RocketChat(ROCKET_CHAT_USERNAME, ROCKET_CHAT_PASSWORD, server_url=ROCKET_CHAT_URL)
+            cls.rocket = RocketChat(user_id=os.environ['ROCKET_CHAT_USER_ID'],
+                                    auth_token=os.environ['ROCKET_CHAT_AUTH_TOKEN'], server_url=ROCKET_CHAT_URL)
             cls._instance = object.__new__(cls)
         return cls._instance
 
